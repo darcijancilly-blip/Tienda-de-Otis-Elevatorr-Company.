@@ -1,52 +1,410 @@
 <!DOCTYPE html>
-<html lang="en">
-
-  <head>
-    <meta charset="UTF-8">
-    <title>Ranking de bebidas</title>
-    <link rel="stylesheet" href="./style.css">
-
-  </head>
-    
-  <body>
-  <!DOCTYPE html>
 <html lang="es">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ranking de Bebidas - Algoritmo Elo</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>☁️ Clouds Electrodomésticos S.A.S.</title>
 
-<link rel="stylesheet" href="estilos.css">
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      padding: 20px;
+      text-align: center;
+      margin: 0;
+    }
+
+    h1 {
+      color: #222;
+    }
+
+    .producto {
+      border: 1px solid #ccc;
+      background: white;
+      border-radius: 8px;
+      padding: 10px;
+      margin: 10px;
+      display: inline-block;
+      width: 220px;
+      vertical-align: top;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .producto img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    .producto button,
+    .carrito button {
+      background-color: #28a745;
+      border: none;
+      color: white;
+      padding: 8px 12px;
+      margin-top: 5px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .producto button:hover {
+      background-color: #218838;
+    }
+
+    .carrito {
+      margin-top: 30px;
+      padding: 15px;
+      background: #fff;
+      border-radius: 8px;
+      text-align: left;
+      display: inline-block;
+      min-width: 300px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .carrito button.vaciar {
+      background-color: #dc3545;
+      margin-top: 10px;
+    }
+
+    .carrito button.vaciar:hover {
+      background-color: #c82333;
+    }
+
+    .finalizar {
+      background-color: #007bff !important;
+      margin-left: 5px;
+    }
+
+    .finalizar:hover {
+      background-color: #0056b3 !important;
+    }
+
+    footer {
+      margin-top: 40px;
+      padding: 20px;
+      background-color: #222;
+      color: white;
+      border-radius: 8px;
+    }
+
+    footer p {
+      margin: 8px;
+    }
+  </style>
 </head>
 
 <body>
 
-<h1>Ranking de Bebidas</h1>
-<h2>¿Cuál bebida prefieres?</h2>
+  <h1>☁️ Ecommerce Clouds Electrodomésticos S.A.S. ☁️</h1>
 
-<div class="contenedor">
+  <p>🏡 Todo para tu hogar inteligente</p>
 
-<button id="productoA"></button>
-<button id="productoB"></button>
+  <h3>👩‍💻 Proyecto realizado por Darci Jancilly Rodríguez Vargas</h3>
 
-</div>
+  <!-- Productos -->
+  <div id="productos"></div>
 
-<h2>Ranking de Preferencia</h2>
+  <!-- Carrito -->
+  <div class="carrito">
 
-<table id="tabla">
-<tr>
-<th>Producto</th>
-<th>Puntuación</th>
-</tr>
-</table>
+    <h2>🧾 Carrito de Compras (0)</h2>
 
-<script src="script.js"></script>
+    <ul id="lista-carrito"></ul>
+
+    <p>
+      <strong>
+        Total: $<span id="total">0.00</span>
+      </strong>
+    </p>
+
+    <button class="vaciar" onclick="vaciarCarrito()">
+      🧼 Vaciar Carrito
+    </button>
+
+    <button class="finalizar" onclick="finalizarCompra()">
+      ✅ Finalizar Compra
+    </button>
+
+  </div>
+
+  <!-- Pie de página -->
+  <footer>
+
+    <p>☁️ Clouds Electrodomésticos S.A.S.</p>
+
+    <p>📍 Bogotá - Colombia</p>
+
+    <p>👩‍💻 Darci Jancilly Rodríguez Vargas</p>
+
+    <p>🎓 Universidad San Buenaventura</p>
+
+  </footer>
+
+
+  <script>
+
+    // ==============================
+    // LISTA DE PRODUCTOS
+    // ==============================
+
+    const productos = [
+      {
+        id: 1,
+        nombre: "Smart TV Samsung 55",
+        precio: 2200000,
+        imagen: "https://m.media-amazon.com/images/I/71A3zymkV+L._AC_SX300_SY300_QL70_FMwebp_.jpg"
+      },
+
+      {
+        id: 2,
+        nombre: "Lavadora LG",
+        precio: 1850000,
+        imagen: "https://m.media-amazon.com/images/I/71vqOmBCNGL._AC_SY300_SX300_QL70_FMwebp_.jpg"
+      },
+
+      {
+        id: 3,
+        nombre: "Nevera Samsung",
+        precio: 2700000,
+        imagen: "https://m.media-amazon.com/images/I/61rS51YOVGL._AC_SX342_SY445_QL70_FMwebp_.jpg"
+      },
+
+      {
+        id: 4,
+        nombre: "Cafetera Inteligente",
+        precio: 280000,
+        imagen: "https://m.media-amazon.com/images/I/71xEIxxALlL._AC_SY300_SX300_QL70_FMwebp_.jpg"
+      },
+
+      {
+        id: 5,
+        nombre: "Microondas Whirlpool",
+        precio: 450000,
+        imagen: "https://m.media-amazon.com/images/I/41e98yRyu-L._AC_SX342_SY445_QL70_FMwebp_.jpg"
+      },
+
+      {
+        id: 6,
+        nombre: "iPhone 17 Pro",
+        precio: 5200500,
+        imagen: "https://m.media-amazon.com/images/I/41OYHDLr-vL._AC_SY300_SX300_QL70_FMwebp_.jpg"
+      }
+    ];
+
+
+    // ==============================
+    // CARRITO
+    // ==============================
+
+    const carrito = [];
+
+
+    // ==============================
+    // ELEMENTOS DEL HTML
+    // ==============================
+
+    const contenedorProductos =
+      document.getElementById("productos");
+
+    const listaCarrito =
+      document.getElementById("lista-carrito");
+
+    const totalCarrito =
+      document.getElementById("total");
+
+
+    // ==============================
+    // MOSTRAR PRODUCTOS
+    // ==============================
+
+    function mostrarProductos() {
+
+      productos.forEach(prod => {
+
+        const div = document.createElement("div");
+
+        div.className = "producto";
+
+        div.innerHTML = `
+          <img
+            src="${prod.imagen}"
+            alt="${prod.nombre}"
+          >
+
+          <h3>${prod.nombre}</h3>
+
+          <p>
+            Precio: $${prod.precio.toLocaleString("es-CO")}
+          </p>
+
+          <button onclick="agregarAlCarrito(${prod.id})">
+            🛒 Agregar al carrito
+          </button>
+        `;
+
+        contenedorProductos.appendChild(div);
+
+      });
+
+    }
+
+
+    // ==============================
+    // AGREGAR AL CARRITO
+    // ==============================
+
+    function agregarAlCarrito(id) {
+
+      const productoExistente =
+        carrito.find(p => p.id === id);
+
+      if (productoExistente) {
+
+        productoExistente.cantidad++;
+
+      } else {
+
+        const producto =
+          productos.find(p => p.id === id);
+
+        carrito.push({
+          ...producto,
+          cantidad: 1
+        });
+
+      }
+
+      actualizarCarrito();
+
+    }
+
+
+    // ==============================
+    // ACTUALIZAR CARRITO
+    // ==============================
+
+    function actualizarCarrito() {
+
+      listaCarrito.innerHTML = "";
+
+      let total = 0;
+
+      let totalItems = 0;
+
+
+      carrito.forEach(item => {
+
+        const li =
+          document.createElement("li");
+
+        const subtotal =
+          item.precio * item.cantidad;
+
+        li.textContent =
+          `${item.nombre} x${item.cantidad} - $${subtotal.toLocaleString("es-CO")}`;
+
+        listaCarrito.appendChild(li);
+
+        total += subtotal;
+
+        totalItems += item.cantidad;
+
+      });
+
+
+      totalCarrito.textContent =
+        total.toLocaleString("es-CO");
+
+
+      actualizarTituloCarrito(totalItems);
+
+    }
+
+
+    // ==============================
+    // ACTUALIZAR TÍTULO DEL CARRITO
+    // ==============================
+
+    function actualizarTituloCarrito(cantidad) {
+
+      const titulo =
+        document.querySelector(".carrito h2");
+
+      titulo.textContent =
+        `🧾 Carrito de Compras (${cantidad})`;
+
+    }
+
+
+    // ==============================
+    // VACIAR CARRITO
+    // ==============================
+
+    function vaciarCarrito() {
+
+      if (carrito.length === 0) {
+
+        alert("El carrito ya está vacío.");
+
+        return;
+
+      }
+
+
+      if (
+        confirm(
+          "¿Estás seguro de que quieres vaciar el carrito?"
+        )
+      ) {
+
+        carrito.length = 0;
+
+        actualizarCarrito();
+
+      }
+
+    }
+
+
+    // ==============================
+    // FINALIZAR COMPRA
+    // ==============================
+
+    function finalizarCompra() {
+
+      if (carrito.length === 0) {
+
+        alert(
+          "El carrito está vacío. Agrega productos antes de finalizar la compra."
+        );
+
+        return;
+
+      }
+
+
+      alert(
+        "🎉 ¡Gracias por tu compra! En breve recibirás un correo de confirmación."
+      );
+
+
+      carrito.length = 0;
+
+      actualizarCarrito();
+
+    }
+
+
+    // ==============================
+    // INICIAR TIENDA
+    // ==============================
+
+    mostrarProductos();
+
+  </script>
 
 </body>
-</html>
-    <script  src="./script.js"></script>
-
-  </body>
-  
 </html>
