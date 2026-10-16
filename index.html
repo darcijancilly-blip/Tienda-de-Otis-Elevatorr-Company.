@@ -1,531 +1,549 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Tienda virtual demostrativa de repuestos y componentes para ascensores.">
-  <title>Otis Elevators | Tienda Virtual</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Otis Elevators | Tienda Virtual</title>
 
-  <style>
-    :root {
-      --azul: #003b71;
-      --azul-claro: #0066a4;
-      --rojo: #e31b34;
-      --fondo: #f4f7fa;
-      --texto: #263445;
-    }
+<style>
+:root {
+  --azul: #003b71;
+  --azul2: #0878bd;
+  --rojo: #e31b34;
+  --fondo: #f3f6fa;
+}
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--fondo);
-      color: var(--texto);
-    }
+body {
+  font-family: Arial, sans-serif;
+  background: var(--fondo);
+  color: #253449;
+}
 
-    header {
-      background: white;
-      padding: 18px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      box-shadow: 0 2px 10px #00000012;
-    }
+header {
+  background: white;
+  padding: 20px 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 18px;
+  box-shadow: 0 2px 10px #0001;
+}
 
-    .logo {
-      font-size: 27px;
-      font-weight: bold;
-      color: var(--azul);
-    }
+.logo {
+  font-size: 26px;
+  font-weight: bold;
+  color: var(--azul);
+}
 
-    .logo span {
-      color: var(--rojo);
-    }
+.logo span { color: var(--rojo); }
 
-    nav {
-      display: flex;
-      gap: 22px;
-      flex-wrap: wrap;
-    }
+nav { display: flex; gap: 18px; flex-wrap: wrap; }
 
-    nav a {
-      text-decoration: none;
-      color: var(--azul);
-      font-weight: bold;
-    }
+nav a {
+  color: var(--azul);
+  text-decoration: none;
+  font-weight: bold;
+}
 
-    nav a:hover {
-      color: var(--rojo);
-    }
+button, .btn {
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  padding: 12px 18px;
+  font-size: 15px;
+  font-weight: bold;
+}
 
-    .carrito {
-      background: var(--azul);
-      color: white;
-      padding: 11px 16px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-    }
+.carrito-btn, .btn-azul {
+  background: var(--azul);
+  color: white;
+}
 
-    .hero {
-      background: linear-gradient(120deg, #003b71, #0875b9);
-      color: white;
-      padding: 75px 8%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 35px;
-      flex-wrap: wrap;
-    }
+.hero {
+  padding: 70px 8%;
+  color: white;
+  background: linear-gradient(120deg, #003b71, #0878bd);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
 
-    .hero-text {
-      max-width: 600px;
-    }
+.hero-text { max-width: 600px; }
 
-    .hero h1 {
-      font-size: clamp(32px, 5vw, 50px);
-      margin-bottom: 20px;
-      line-height: 1.15;
-    }
+.hero h1 {
+  font-size: clamp(32px, 5vw, 48px);
+  margin-bottom: 18px;
+}
 
-    .hero p {
-      font-size: 18px;
-      line-height: 1.7;
-      margin-bottom: 25px;
-    }
+.hero p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
 
-    .btn {
-      display: inline-block;
-      padding: 14px 22px;
-      background: var(--rojo);
-      color: white;
-      text-decoration: none;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-    }
+.btn-rojo { background: var(--rojo); color: white; }
+.hero-icon { font-size: 100px; }
 
-    .hero-visual {
-      font-size: 100px;
-      text-align: center;
-      flex: 1;
-      min-width: 180px;
-    }
+section { padding: 50px 7%; }
 
-    section {
-      padding: 55px 7%;
-    }
+.titulo {
+  text-align: center;
+  color: var(--azul);
+  font-size: 32px;
+  margin-bottom: 12px;
+}
 
-    .titulo {
-      text-align: center;
-      color: var(--azul);
-      font-size: 32px;
-      margin-bottom: 12px;
-    }
+.subtitulo {
+  text-align: center;
+  color: #68788b;
+  margin-bottom: 30px;
+}
 
-    .subtitulo {
-      text-align: center;
-      margin-bottom: 30px;
-      color: #64748b;
-    }
+.busqueda {
+  display: block;
+  width: 100%;
+  max-width: 550px;
+  padding: 14px;
+  margin: 0 auto 30px;
+  border: 1px solid #ccd5df;
+  border-radius: 6px;
+  font-size: 16px;
+}
 
-    .herramientas {
-      display: flex;
-      gap: 12px;
-      max-width: 700px;
-      margin: 0 auto 35px;
-    }
+.productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
 
-    .herramientas input {
-      flex: 1;
-      min-width: 0;
-      padding: 13px;
-      border: 1px solid #ccd5df;
-      border-radius: 6px;
-      font-size: 16px;
-    }
+.producto {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px #0000000c;
+}
 
-    .productos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 25px;
-    }
+.producto-img {
+  height: 155px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #e5eef7;
+  font-size: 65px;
+}
 
-    .producto {
-      background: white;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 4px 15px #0000000b;
-      transition: transform .2s;
-    }
+.producto-info { padding: 20px; }
 
-    .producto:hover {
-      transform: translateY(-5px);
-    }
+.producto h3 {
+  color: var(--azul);
+  margin-bottom: 10px;
+}
 
-    .producto-imagen {
-      height: 170px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #e8f0f7;
-      font-size: 65px;
-    }
+.producto p {
+  color: #64748b;
+  line-height: 1.5;
+  min-height: 45px;
+  font-size: 14px;
+}
 
-    .producto-info {
-      padding: 20px;
-    }
+.precio {
+  color: var(--azul);
+  font-size: 21px;
+  font-weight: bold;
+  margin: 17px 0;
+}
 
-    .producto h3 {
-      color: var(--azul);
-      margin-bottom: 10px;
-    }
+.producto button { width: 100%; }
 
-    .producto p {
-      color: #64748b;
-      font-size: 14px;
-      line-height: 1.5;
-      min-height: 42px;
-    }
+.carrito-seccion {
+  background: white;
+  max-width: 850px;
+  margin: 0 auto 50px;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px #0000000b;
+}
 
-    .precio {
-      color: var(--azul);
-      font-size: 21px;
-      font-weight: bold;
-      margin: 17px 0;
-    }
+.carrito-seccion h2 {
+  color: var(--azul);
+  margin-bottom: 20px;
+}
 
-    .producto .btn {
-      width: 100%;
-    }
+.item-carrito {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
 
-    .beneficios {
-      background: white;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-      gap: 25px;
-      text-align: center;
-    }
+.item-carrito button {
+  background: #ffe7e9;
+  color: #c31930;
+  padding: 8px 12px;
+}
 
-    .beneficio {
-      padding: 15px;
-    }
+.total {
+  font-size: 25px;
+  font-weight: bold;
+  color: var(--azul);
+  margin: 25px 0;
+  text-align: right;
+}
 
-    .beneficio .icono {
-      font-size: 38px;
-      margin-bottom: 12px;
-    }
+.pagar {
+  width: 100%;
+  background: #168348;
+  color: white;
+  padding: 17px;
+  font-size: 18px;
+}
 
-    .beneficio h3 {
-      color: var(--azul);
-      margin-bottom: 8px;
-    }
+.pagar:hover { background: #106a39; }
 
-    .beneficio p {
-      color: #64748b;
-      line-height: 1.5;
-    }
+.metodos {
+  text-align: center;
+  color: #64748b;
+  font-size: 13px;
+  margin-top: 15px;
+}
 
-    .contacto {
-      background: #e8f0f7;
-      text-align: center;
-    }
+.beneficios {
+  background: #e8f0f7;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 25px;
+  text-align: center;
+}
 
-    .contacto p {
-      margin: 15px 0 25px;
-    }
+.beneficios h3 {
+  color: var(--azul);
+  margin: 10px 0;
+}
 
-    footer {
-      background: #002747;
-      color: white;
-      padding: 30px 7%;
-      text-align: center;
-      line-height: 1.8;
-    }
+.beneficios p { line-height: 1.5; }
 
-    footer small {
-      color: #c7d5e2;
-    }
+footer {
+  background: #002747;
+  color: white;
+  text-align: center;
+  padding: 28px 7%;
+  line-height: 1.8;
+}
 
-    #estado-carrito {
-      margin: 18px 0;
-      font-weight: bold;
-      color: var(--azul);
-      text-align: center;
-    }
+footer small { color: #cfdae5; }
 
-    @media (max-width: 600px) {
-      header {
-        justify-content: center;
-      }
+#mensaje {
+  text-align: center;
+  margin-top: 15px;
+  color: var(--azul);
+}
 
-      nav {
-        justify-content: center;
-      }
-
-      .hero {
-        padding: 50px 7%;
-        text-align: center;
-      }
-
-      .hero-visual {
-        font-size: 75px;
-      }
-
-      section {
-        padding: 40px 6%;
-      }
-
-      .herramientas {
-        flex-direction: column;
-      }
-    }
-  </style>
+@media(max-width:600px) {
+  header { justify-content: center; }
+  nav { justify-content: center; }
+  .hero { text-align: center; }
+  .hero-icon { width: 100%; font-size: 75px; }
+  .carrito-seccion { margin: 0 12px 35px; padding: 20px; }
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <a href="#" class="logo" style="text-decoration:none">
-      OTIS<span>.</span> ELEVATORS
-    </a>
+<header>
+  <div class="logo">OTIS<span>.</span> ELEVATORS</div>
 
-    <nav>
-      <a href="#inicio">Inicio</a>
-      <a href="#productos">Productos</a>
-      <a href="#nosotros">Servicios</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
+  <nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#productos">Productos</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
 
-    <button class="carrito" onclick="verCarrito()">
-      🛒 Carrito (<span id="cantidad">0</span>)
-    </button>
-  </header>
+  <button class="carrito-btn" onclick="irAlCarrito()">
+    🛒 Carrito (<span id="cantidad">0</span>)
+  </button>
+</header>
 
-  <main>
-    <section class="hero" id="inicio">
-      <div class="hero-text">
-        <h1>Soluciones para el transporte vertical</h1>
-        <p>
-          Encuentra componentes, repuestos y accesorios para
-          ascensores y sistemas de elevación en un solo lugar.
-        </p>
-        <a href="#productos" class="btn">Explorar productos</a>
-      </div>
-
-      <div class="hero-visual" aria-hidden="true">🏢 ↕️</div>
-    </section>
-
-    <section id="productos">
-      <h2 class="titulo">Nuestro catálogo</h2>
-      <p class="subtitulo">
-        Explora nuestra selección demostrativa de componentes.
-      </p>
-
-      <div class="herramientas">
-        <input
-          type="search"
-          id="busqueda"
-          placeholder="Buscar productos..."
-          aria-label="Buscar productos"
-          oninput="filtrarProductos()"
-        >
-      </div>
-
-      <div class="productos" id="lista-productos"></div>
-      <p id="estado-carrito" role="status"></p>
-    </section>
-
-    <section class="beneficios" id="nosotros">
-      <div class="beneficio">
-        <div class="icono">⚙️</div>
-        <h3>Componentes</h3>
-        <p>Catálogo demostrativo de piezas para sistemas de elevación.</p>
-      </div>
-
-      <div class="beneficio">
-        <div class="icono">🛡️</div>
-        <h3>Seguridad</h3>
-        <p>Prioriza piezas compatibles y especificaciones verificadas.</p>
-      </div>
-
-      <div class="beneficio">
-        <div class="icono">📦</div>
-        <h3>Pedidos</h3>
-        <p>Consulta los productos seleccionados antes de comprar.</p>
-      </div>
-    </section>
-
-    <section class="contacto" id="contacto">
-      <h2 class="titulo">¿Necesitas ayuda?</h2>
+<main>
+  <section class="hero" id="inicio">
+    <div class="hero-text">
+      <h1>Todo para tus sistemas de elevación</h1>
       <p>
-        Contáctanos para consultar disponibilidad y compatibilidad
-        de los componentes.
+        Explora nuestro catálogo demostrativo de componentes,
+        accesorios y repuestos para ascensores.
       </p>
-      <a class="btn" href="mailto:ventas@ejemplo.com">
-        Solicitar información
+      <a href="#productos" class="btn btn-rojo"
+         style="display:inline-block;text-decoration:none">
+        Comprar productos
       </a>
-    </section>
-  </main>
+    </div>
+    <div class="hero-icon">🏢 ↕️</div>
+  </section>
 
-  <footer>
-    <p><strong>OTIS ELEVATORS | Tienda demostrativa</strong></p>
-    <small>
-      Proyecto de ejemplo independiente. No es una tienda oficial
-      ni está afiliada a Otis Elevator Company. Los productos y
-      precios son ilustrativos y no representan ofertas reales.
-    </small>
-    <p>© <span id="anio"></span> | Todos los derechos reservados.</p>
-  </footer>
+  <section id="productos">
+    <h2 class="titulo">Nuestros productos</h2>
+    <p class="subtitulo">Selecciona tus productos y agrégalos al carrito.</p>
 
-  <script>
-    // Productos y precios ficticios para la demostración.
-    const productos = [
-      {
-        id: 1,
-        nombre: "Panel de control",
-        descripcion: "Panel electrónico ilustrativo para ascensores.",
-        precio: 1850000,
-        icono: "🎛️"
-      },
-      {
-        id: 2,
-        nombre: "Sensor de posición",
-        descripcion: "Sensor de referencia para sistemas de elevación.",
-        precio: 285000,
-        icono: "📡"
-      },
-      {
-        id: 3,
-        nombre: "Botonera de cabina",
-        descripcion: "Interfaz de botones para selección de pisos.",
-        precio: 420000,
-        icono: "🔘"
-      },
-      {
-        id: 4,
-        nombre: "Rodillo para puerta",
-        descripcion: "Componente mecánico de puerta de ascensor.",
-        precio: 95000,
-        icono: "⚙️"
-      },
-      {
-        id: 5,
-        nombre: "Luz LED de cabina",
-        descripcion: "Iluminación para el interior de la cabina.",
-        precio: 78000,
-        icono: "💡"
-      },
-      {
-        id: 6,
-        nombre: "Módulo electrónico",
-        descripcion: "Módulo ilustrativo para sistemas de control.",
-        precio: 560000,
-        icono: "🔌"
-      }
-    ];
+    <input
+      class="busqueda"
+      id="busqueda"
+      type="search"
+      placeholder="🔎 Buscar un producto..."
+      oninput="filtrarProductos()"
+    >
 
-    let carrito = [];
+    <div class="productos" id="listaProductos"></div>
+  </section>
 
-    const formatoCOP = valor =>
-      new Intl.NumberFormat("es-CO", {
-        style: "currency",
-        currency: "COP",
-        maximumFractionDigits: 0
-      }).format(valor);
+  <section id="carrito">
+    <div class="carrito-seccion">
+      <h2>🛒 Tu carrito de compras</h2>
+      <div id="listaCarrito">Tu carrito está vacío.</div>
 
-    function mostrarProductos(lista = productos) {
-      const contenedor = document.getElementById("lista-productos");
+      <div class="total">
+        Total: <span id="total">$ 0</span> COP
+      </div>
 
-      if (lista.length === 0) {
-        contenedor.innerHTML =
-          "<p>No se encontraron productos.</p>";
-        return;
-      }
+      <button class="pagar" onclick="pagarAhora()">
+        🔒 Pagar ahora
+      </button>
 
-      contenedor.innerHTML = lista.map(producto => `
-        <article class="producto">
-          <div class="producto-imagen" aria-hidden="true">
-            ${producto.icono}
-          </div>
-          <div class="producto-info">
-            <h3>${producto.nombre}</h3>
-            <p>${producto.descripcion}</p>
-            <div class="precio">${formatoCOP(producto.precio)}</div>
-            <button
-              class="btn"
-              onclick="agregarAlCarrito(${producto.id})"
-            >
-              Agregar al carrito
-            </button>
-          </div>
-        </article>
-      `).join("");
-    }
+      <p class="metodos">
+        Pago de demostración · PSE · Tarjetas · Transferencia
+      </p>
 
-    function filtrarProductos() {
-      const texto = document
-        .getElementById("busqueda")
-        .value.toLowerCase()
-        .trim();
+      <p id="mensaje" role="status"></p>
+    </div>
+  </section>
 
-      const resultados = productos.filter(producto =>
-        producto.nombre.toLowerCase().includes(texto) ||
-        producto.descripcion.toLowerCase().includes(texto)
-      );
+  <section class="beneficios" id="servicios">
+    <div>
+      <div style="font-size:38px">⚙️</div>
+      <h3>Repuestos</h3>
+      <p>Componentes para sistemas de elevación.</p>
+    </div>
+    <div>
+      <div style="font-size:38px">🛡️</div>
+      <h3>Seguridad</h3>
+      <p>Consulta siempre la compatibilidad de cada pieza.</p>
+    </div>
+    <div>
+      <div style="font-size:38px">📦</div>
+      <h3>Pedidos</h3>
+      <p>Revisa los productos y el total antes de comprar.</p>
+    </div>
+  </section>
 
-      mostrarProductos(resultados);
-    }
+  <section id="contacto" style="text-align:center">
+    <h2 class="titulo">¿Necesitas ayuda?</h2>
+    <p style="margin:20px 0">
+      Escríbenos para consultar sobre productos y pedidos.
+    </p>
+    <a class="btn btn-azul" href="mailto:ventas@ejemplo.com"
+       style="display:inline-block;text-decoration:none">
+      Contactar ventas
+    </a>
+  </section>
+</main>
 
-    function agregarAlCarrito(id) {
-      const producto = productos.find(p => p.id === id);
-      if (!producto) return;
+<footer>
+  <strong>OTIS ELEVATORS | Tienda demostrativa</strong>
+  <p>© <span id="anio"></span> - Proyecto de tienda virtual</p>
+  <small>
+    Sitio demostrativo independiente, no afiliado a Otis Elevator Company.
+    Productos y precios ficticios. No se procesan pagos reales.
+  </small>
+</footer>
 
-      carrito.push(producto);
-      document.getElementById("cantidad").textContent =
-        carrito.length;
+<script>
+const productos = [
+  {
+    id: 1,
+    nombre: "Panel de control",
+    descripcion: "Panel electrónico ilustrativo para ascensores.",
+    precio: 1850000,
+    icono: "🎛️"
+  },
+  {
+    id: 2,
+    nombre: "Sensor de posición",
+    descripcion: "Sensor de referencia para sistemas de elevación.",
+    precio: 285000,
+    icono: "📡"
+  },
+  {
+    id: 3,
+    nombre: "Botonera de cabina",
+    descripcion: "Botones para selección de pisos.",
+    precio: 420000,
+    icono: "🔘"
+  },
+  {
+    id: 4,
+    nombre: "Rodillo para puerta",
+    descripcion: "Componente mecánico para puertas de ascensor.",
+    precio: 95000,
+    icono: "⚙️"
+  },
+  {
+    id: 5,
+    nombre: "Luz LED de cabina",
+    descripcion: "Iluminación para el interior de la cabina.",
+    precio: 78000,
+    icono: "💡"
+  },
+  {
+    id: 6,
+    nombre: "Módulo electrónico",
+    descripcion: "Módulo ilustrativo para sistemas de control.",
+    precio: 560000,
+    icono: "🔌"
+  }
+];
 
-      document.getElementById("estado-carrito").textContent =
-        `${producto.nombre} agregado al carrito.`;
-    }
+let carrito = [];
 
-    function verCarrito() {
-      if (carrito.length === 0) {
-        alert("Tu carrito está vacío.");
-        return;
-      }
+function dinero(valor) {
+  return new Intl.NumberFormat("es-CO", {
+    style: "currency",
+    currency: "COP",
+    maximumFractionDigits: 0
+  }).format(valor);
+}
 
-      const resumen = carrito.map((producto, indice) =>
-        `${indice + 1}. ${producto.nombre} — ${formatoCOP(producto.precio)}`
-      ).join("\n");
+function mostrarProductos(lista = productos) {
+  const contenedor = document.getElementById("listaProductos");
 
-      const total = carrito.reduce(
-        (suma, producto) => suma + producto.precio, 0
-      );
+  if (!lista.length) {
+    contenedor.innerHTML = "<p>No se encontraron productos.</p>";
+    return;
+  }
 
-      alert(
-        "PRODUCTOS EN TU CARRITO\n\n" +
-        resumen +
-        "\n\nTotal estimado: " + formatoCOP(total) +
-        "\n\nEsta demostración no procesa pagos."
-      );
-    }
+  contenedor.innerHTML = lista.map(p => `
+    <article class="producto">
+      <div class="producto-img">${p.icono}</div>
+      <div class="producto-info">
+        <h3>${p.nombre}</h3>
+        <p>${p.descripcion}</p>
+        <div class="precio">${dinero(p.precio)}</div>
+        <button class="btn-azul" onclick="agregar(${p.id})">
+          Agregar al carrito
+        </button>
+      </div>
+    </article>
+  `).join("");
+}
 
-    document.getElementById("anio").textContent =
-      new Date().getFullYear();
+function agregar(id) {
+  const producto = productos.find(p => p.id === id);
+  if (!producto) return;
 
-    mostrarProductos();
-  </script>
+  carrito.push(producto);
+  actualizarCarrito();
+
+  document.getElementById("mensaje").textContent =
+    producto.nombre + " agregado al carrito.";
+}
+
+function eliminar(indice) {
+  carrito.splice(indice, 1);
+  actualizarCarrito();
+}
+
+function actualizarCarrito() {
+  document.getElementById("cantidad").textContent = carrito.length;
+
+  const contenedor = document.getElementById("listaCarrito");
+
+  if (carrito.length === 0) {
+    contenedor.textContent = "Tu carrito está vacío.";
+  } else {
+    contenedor.innerHTML = carrito.map((p, i) => `
+      <div class="item-carrito">
+        <div>
+          <strong>${p.nombre}</strong><br>
+          ${dinero(p.precio)}
+        </div>
+        <button onclick="eliminar(${i})">Eliminar</button>
+      </div>
+    `).join("");
+  }
+
+  const total = carrito.reduce((suma, p) => suma + p.precio, 0);
+  document.getElementById("total").textContent =
+    dinero(total).replace(/\s?COP$/, "");
+}
+
+function filtrarProductos() {
+  const texto = document.getElementById("busqueda")
+    .value.toLowerCase().trim();
+
+  mostrarProductos(productos.filter(p =>
+    p.nombre.toLowerCase().includes(texto) ||
+    p.descripcion.toLowerCase().includes(texto)
+  ));
+}
+
+function irAlCarrito() {
+  document.getElementById("carrito").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+function pagarAhora() {
+  if (carrito.length === 0) {
+    alert("Agrega al menos un producto antes de pagar.");
+    return;
+  }
+
+  const total = carrito.reduce((suma, p) => suma + p.precio, 0);
+
+  const continuar = confirm(
+    "RESUMEN DE TU PEDIDO\n\n" +
+    carrito.map(p => p.nombre + " — " + dinero(p.precio)).join("\n") +
+    "\n\nTOTAL: " + dinero(total) +
+    "\n\n¿Deseas continuar al pago?"
+  );
+
+  if (!continuar) return;
+
+  const metodo = prompt(
+    "Selecciona tu método de pago:\n\n" +
+    "1. PSE\n" +
+    "2. Tarjeta débito o crédito\n" +
+    "3. Transferencia bancaria\n\n" +
+    "Escribe 1, 2 o 3:"
+  );
+
+  if (["1", "2", "3"].includes(metodo)) {
+    alert(
+      "Método seleccionado: " +
+      (metodo === "1" ? "PSE" :
+       metodo === "2" ? "Tarjeta" : "Transferencia") +
+      "\nTotal: " + dinero(total) +
+      "\n\nEsta es una demostración. Para pagar de verdad, " +
+      "debes integrar una pasarela de pagos."
+    );
+  } else if (metodo !== null) {
+    alert("Selecciona una opción válida.");
+  }
+}
+
+document.getElementById("anio").textContent =
+  new Date().getFullYear();
+
+mostrarProductos();
+actualizarCarrito();
+</script>
 
 </body>
 </html>
-</body>
-</html>
+
