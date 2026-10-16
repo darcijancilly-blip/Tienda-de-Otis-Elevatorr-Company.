@@ -3,408 +3,529 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>☁️ Clouds Electrodomésticos S.A.S.</title>
+  <meta name="description" content="Tienda virtual demostrativa de repuestos y componentes para ascensores.">
+  <title>Otis Elevators | Tienda Virtual</title>
 
   <style>
-    body {
-      font-family: system-ui, sans-serif;
-      background-color: #f4f4f4;
-      color: #333;
-      padding: 20px;
-      text-align: center;
+    :root {
+      --azul: #003b71;
+      --azul-claro: #0066a4;
+      --rojo: #e31b34;
+      --fondo: #f4f7fa;
+      --texto: #263445;
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
+      padding: 0;
     }
 
-    h1 {
-      color: #222;
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--fondo);
+      color: var(--texto);
     }
 
-    .producto {
-      border: 1px solid #ccc;
+    header {
       background: white;
-      border-radius: 8px;
-      padding: 10px;
-      margin: 10px;
-      display: inline-block;
-      width: 220px;
-      vertical-align: top;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 18px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 10px #00000012;
     }
 
-    .producto img {
-      width: 100%;
-      height: 140px;
-      object-fit: cover;
-      border-radius: 4px;
+    .logo {
+      font-size: 27px;
+      font-weight: bold;
+      color: var(--azul);
     }
 
-    .producto button,
-    .carrito button {
-      background-color: #28a745;
-      border: none;
-      color: white;
-      padding: 8px 12px;
-      margin-top: 5px;
-      border-radius: 4px;
-      cursor: pointer;
+    .logo span {
+      color: var(--rojo);
     }
 
-    .producto button:hover {
-      background-color: #218838;
+    nav {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--azul);
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: var(--rojo);
     }
 
     .carrito {
-      margin-top: 30px;
-      padding: 15px;
-      background: #fff;
-      border-radius: 8px;
-      text-align: left;
+      background: var(--azul);
+      color: white;
+      padding: 11px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .hero {
+      background: linear-gradient(120deg, #003b71, #0875b9);
+      color: white;
+      padding: 75px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 35px;
+      flex-wrap: wrap;
+    }
+
+    .hero-text {
+      max-width: 600px;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 50px);
+      margin-bottom: 20px;
+      line-height: 1.15;
+    }
+
+    .hero p {
+      font-size: 18px;
+      line-height: 1.7;
+      margin-bottom: 25px;
+    }
+
+    .btn {
       display: inline-block;
-      min-width: 300px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 14px 22px;
+      background: var(--rojo);
+      color: white;
+      text-decoration: none;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
     }
 
-    .carrito button.vaciar {
-      background-color: #dc3545;
-      margin-top: 10px;
+    .hero-visual {
+      font-size: 100px;
+      text-align: center;
+      flex: 1;
+      min-width: 180px;
     }
 
-    .carrito button.vaciar:hover {
-      background-color: #c82333;
+    section {
+      padding: 55px 7%;
     }
 
-    .finalizar {
-      background-color: #007bff !important;
-      margin-left: 5px;
+    .titulo {
+      text-align: center;
+      color: var(--azul);
+      font-size: 32px;
+      margin-bottom: 12px;
     }
 
-    .finalizar:hover {
-      background-color: #0056b3 !important;
+    .subtitulo {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #64748b;
+    }
+
+    .herramientas {
+      display: flex;
+      gap: 12px;
+      max-width: 700px;
+      margin: 0 auto 35px;
+    }
+
+    .herramientas input {
+      flex: 1;
+      min-width: 0;
+      padding: 13px;
+      border: 1px solid #ccd5df;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    .productos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 25px;
+    }
+
+    .producto {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px #0000000b;
+      transition: transform .2s;
+    }
+
+    .producto:hover {
+      transform: translateY(-5px);
+    }
+
+    .producto-imagen {
+      height: 170px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #e8f0f7;
+      font-size: 65px;
+    }
+
+    .producto-info {
+      padding: 20px;
+    }
+
+    .producto h3 {
+      color: var(--azul);
+      margin-bottom: 10px;
+    }
+
+    .producto p {
+      color: #64748b;
+      font-size: 14px;
+      line-height: 1.5;
+      min-height: 42px;
+    }
+
+    .precio {
+      color: var(--azul);
+      font-size: 21px;
+      font-weight: bold;
+      margin: 17px 0;
+    }
+
+    .producto .btn {
+      width: 100%;
+    }
+
+    .beneficios {
+      background: white;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 25px;
+      text-align: center;
+    }
+
+    .beneficio {
+      padding: 15px;
+    }
+
+    .beneficio .icono {
+      font-size: 38px;
+      margin-bottom: 12px;
+    }
+
+    .beneficio h3 {
+      color: var(--azul);
+      margin-bottom: 8px;
+    }
+
+    .beneficio p {
+      color: #64748b;
+      line-height: 1.5;
+    }
+
+    .contacto {
+      background: #e8f0f7;
+      text-align: center;
+    }
+
+    .contacto p {
+      margin: 15px 0 25px;
     }
 
     footer {
-      margin-top: 40px;
-      padding: 20px;
-      background-color: #222;
+      background: #002747;
       color: white;
-      border-radius: 8px;
+      padding: 30px 7%;
+      text-align: center;
+      line-height: 1.8;
     }
 
-    footer p {
-      margin: 8px;
+    footer small {
+      color: #c7d5e2;
+    }
+
+    #estado-carrito {
+      margin: 18px 0;
+      font-weight: bold;
+      color: var(--azul);
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        justify-content: center;
+      }
+
+      nav {
+        justify-content: center;
+      }
+
+      .hero {
+        padding: 50px 7%;
+        text-align: center;
+      }
+
+      .hero-visual {
+        font-size: 75px;
+      }
+
+      section {
+        padding: 40px 6%;
+      }
+
+      .herramientas {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <h1>☁️ Ecommerce Clouds Electrodomésticos S.A.S. ☁️</h1>
+  <header>
+    <a href="#" class="logo" style="text-decoration:none">
+      OTIS<span>.</span> ELEVATORS
+    </a>
 
-  <p>🏡 Todo para tu hogar inteligente</p>
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#productos">Productos</a>
+      <a href="#nosotros">Servicios</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
 
-  <h3>👩‍💻 Proyecto realizado por Darci Jancilly Rodríguez Vargas</h3>
-
-  <!-- Productos -->
-  <div id="productos"></div>
-
-  <!-- Carrito -->
-  <div class="carrito">
-
-    <h2>🧾 Carrito de Compras (0)</h2>
-
-    <ul id="lista-carrito"></ul>
-
-    <p>
-      <strong>
-        Total: $<span id="total">0.00</span>
-      </strong>
-    </p>
-
-    <button class="vaciar" onclick="vaciarCarrito()">
-      🧼 Vaciar Carrito
+    <button class="carrito" onclick="verCarrito()">
+      🛒 Carrito (<span id="cantidad">0</span>)
     </button>
+  </header>
 
-    <button class="finalizar" onclick="finalizarCompra()">
-      ✅ Finalizar Compra
-    </button>
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-text">
+        <h1>Soluciones para el transporte vertical</h1>
+        <p>
+          Encuentra componentes, repuestos y accesorios para
+          ascensores y sistemas de elevación en un solo lugar.
+        </p>
+        <a href="#productos" class="btn">Explorar productos</a>
+      </div>
 
-  </div>
+      <div class="hero-visual" aria-hidden="true">🏢 ↕️</div>
+    </section>
 
-  <!-- Pie de página -->
+    <section id="productos">
+      <h2 class="titulo">Nuestro catálogo</h2>
+      <p class="subtitulo">
+        Explora nuestra selección demostrativa de componentes.
+      </p>
+
+      <div class="herramientas">
+        <input
+          type="search"
+          id="busqueda"
+          placeholder="Buscar productos..."
+          aria-label="Buscar productos"
+          oninput="filtrarProductos()"
+        >
+      </div>
+
+      <div class="productos" id="lista-productos"></div>
+      <p id="estado-carrito" role="status"></p>
+    </section>
+
+    <section class="beneficios" id="nosotros">
+      <div class="beneficio">
+        <div class="icono">⚙️</div>
+        <h3>Componentes</h3>
+        <p>Catálogo demostrativo de piezas para sistemas de elevación.</p>
+      </div>
+
+      <div class="beneficio">
+        <div class="icono">🛡️</div>
+        <h3>Seguridad</h3>
+        <p>Prioriza piezas compatibles y especificaciones verificadas.</p>
+      </div>
+
+      <div class="beneficio">
+        <div class="icono">📦</div>
+        <h3>Pedidos</h3>
+        <p>Consulta los productos seleccionados antes de comprar.</p>
+      </div>
+    </section>
+
+    <section class="contacto" id="contacto">
+      <h2 class="titulo">¿Necesitas ayuda?</h2>
+      <p>
+        Contáctanos para consultar disponibilidad y compatibilidad
+        de los componentes.
+      </p>
+      <a class="btn" href="mailto:ventas@ejemplo.com">
+        Solicitar información
+      </a>
+    </section>
+  </main>
+
   <footer>
-
-    <p>☁️ Clouds Electrodomésticos S.A.S.</p>
-
-    <p>📍 Bogotá - Colombia</p>
-
-    <p>👩‍💻 Darci Jancilly Rodríguez Vargas</p>
-
-    <p>🎓 Universidad San Buenaventura</p>
-
+    <p><strong>OTIS ELEVATORS | Tienda demostrativa</strong></p>
+    <small>
+      Proyecto de ejemplo independiente. No es una tienda oficial
+      ni está afiliada a Otis Elevator Company. Los productos y
+      precios son ilustrativos y no representan ofertas reales.
+    </small>
+    <p>© <span id="anio"></span> | Todos los derechos reservados.</p>
   </footer>
 
-
   <script>
-
-    // ==============================
-    // LISTA DE PRODUCTOS
-    // ==============================
-
+    // Productos y precios ficticios para la demostración.
     const productos = [
       {
         id: 1,
-        nombre: "Smart TV Samsung 55",
-        precio: 2200000,
-        imagen: "https://m.media-amazon.com/images/I/71A3zymkV+L._AC_SX300_SY300_QL70_FMwebp_.jpg"
+        nombre: "Panel de control",
+        descripcion: "Panel electrónico ilustrativo para ascensores.",
+        precio: 1850000,
+        icono: "🎛️"
       },
-
       {
         id: 2,
-        nombre: "Lavadora LG",
-        precio: 1850000,
-        imagen: "https://m.media-amazon.com/images/I/71vqOmBCNGL._AC_SY300_SX300_QL70_FMwebp_.jpg"
+        nombre: "Sensor de posición",
+        descripcion: "Sensor de referencia para sistemas de elevación.",
+        precio: 285000,
+        icono: "📡"
       },
-
       {
         id: 3,
-        nombre: "Nevera Samsung",
-        precio: 2700000,
-        imagen: "https://m.media-amazon.com/images/I/61rS51YOVGL._AC_SX342_SY445_QL70_FMwebp_.jpg"
+        nombre: "Botonera de cabina",
+        descripcion: "Interfaz de botones para selección de pisos.",
+        precio: 420000,
+        icono: "🔘"
       },
-
       {
         id: 4,
-        nombre: "Cafetera Inteligente",
-        precio: 280000,
-        imagen: "https://m.media-amazon.com/images/I/71xEIxxALlL._AC_SY300_SX300_QL70_FMwebp_.jpg"
+        nombre: "Rodillo para puerta",
+        descripcion: "Componente mecánico de puerta de ascensor.",
+        precio: 95000,
+        icono: "⚙️"
       },
-
       {
         id: 5,
-        nombre: "Microondas Whirlpool",
-        precio: 450000,
-        imagen: "https://m.media-amazon.com/images/I/41e98yRyu-L._AC_SX342_SY445_QL70_FMwebp_.jpg"
+        nombre: "Luz LED de cabina",
+        descripcion: "Iluminación para el interior de la cabina.",
+        precio: 78000,
+        icono: "💡"
       },
-
       {
         id: 6,
-        nombre: "iPhone 17 Pro",
-        precio: 5200500,
-        imagen: "https://m.media-amazon.com/images/I/41OYHDLr-vL._AC_SY300_SX300_QL70_FMwebp_.jpg"
+        nombre: "Módulo electrónico",
+        descripcion: "Módulo ilustrativo para sistemas de control.",
+        precio: 560000,
+        icono: "🔌"
       }
     ];
 
-
-    // ==============================
-    // CARRITO
-    // ==============================
-
-    const carrito = [];
-
-
-    // ==============================
-    // ELEMENTOS DEL HTML
-    // ==============================
-
-    const contenedorProductos =
-      document.getElementById("productos");
-
-    const listaCarrito =
-      document.getElementById("lista-carrito");
-
-    const totalCarrito =
-      document.getElementById("total");
-
-
-    // ==============================
-    // MOSTRAR PRODUCTOS
-    // ==============================
-
-    function mostrarProductos() {
-
-      productos.forEach(prod => {
-
-        const div = document.createElement("div");
-
-        div.className = "producto";
-
-        div.innerHTML = `
-          <img
-            src="${prod.imagen}"
-            alt="${prod.nombre}"
-          >
-
-          <h3>${prod.nombre}</h3>
-
-          <p>
-            Precio: $${prod.precio.toLocaleString("es-CO")}
-          </p>
-
-          <button onclick="agregarAlCarrito(${prod.id})">
-            🛒 Agregar al carrito
-          </button>
-        `;
-
-        contenedorProductos.appendChild(div);
-
-      });
-
-    }
-
-
-    // ==============================
-    // AGREGAR AL CARRITO
-    // ==============================
-
-    function agregarAlCarrito(id) {
-
-      const productoExistente =
-        carrito.find(p => p.id === id);
-
-      if (productoExistente) {
-
-        productoExistente.cantidad++;
-
-      } else {
-
-        const producto =
-          productos.find(p => p.id === id);
-
-        carrito.push({
-          ...producto,
-          cantidad: 1
-        });
-
-      }
-
-      actualizarCarrito();
-
-    }
-
-
-    // ==============================
-    // ACTUALIZAR CARRITO
-    // ==============================
-
-    function actualizarCarrito() {
-
-      listaCarrito.innerHTML = "";
-
-      let total = 0;
-
-      let totalItems = 0;
-
-
-      carrito.forEach(item => {
-
-        const li =
-          document.createElement("li");
-
-        const subtotal =
-          item.precio * item.cantidad;
-
-        li.textContent =
-          `${item.nombre} x${item.cantidad} - $${subtotal.toLocaleString("es-CO")}`;
-
-        listaCarrito.appendChild(li);
-
-        total += subtotal;
-
-        totalItems += item.cantidad;
-
-      });
-
-
-      totalCarrito.textContent =
-        total.toLocaleString("es-CO");
-
-
-      actualizarTituloCarrito(totalItems);
-
-    }
-
-
-    // ==============================
-    // ACTUALIZAR TÍTULO DEL CARRITO
-    // ==============================
-
-    function actualizarTituloCarrito(cantidad) {
-
-      const titulo =
-        document.querySelector(".carrito h2");
-
-      titulo.textContent =
-        `🧾 Carrito de Compras (${cantidad})`;
-
-    }
-
-
-    // ==============================
-    // VACIAR CARRITO
-    // ==============================
-
-    function vaciarCarrito() {
-
-      if (carrito.length === 0) {
-
-        alert("El carrito ya está vacío.");
-
+    let carrito = [];
+
+    const formatoCOP = valor =>
+      new Intl.NumberFormat("es-CO", {
+        style: "currency",
+        currency: "COP",
+        maximumFractionDigits: 0
+      }).format(valor);
+
+    function mostrarProductos(lista = productos) {
+      const contenedor = document.getElementById("lista-productos");
+
+      if (lista.length === 0) {
+        contenedor.innerHTML =
+          "<p>No se encontraron productos.</p>";
         return;
-
       }
 
-
-      if (
-        confirm(
-          "¿Estás seguro de que quieres vaciar el carrito?"
-        )
-      ) {
-
-        carrito.length = 0;
-
-        actualizarCarrito();
-
-      }
-
+      contenedor.innerHTML = lista.map(producto => `
+        <article class="producto">
+          <div class="producto-imagen" aria-hidden="true">
+            ${producto.icono}
+          </div>
+          <div class="producto-info">
+            <h3>${producto.nombre}</h3>
+            <p>${producto.descripcion}</p>
+            <div class="precio">${formatoCOP(producto.precio)}</div>
+            <button
+              class="btn"
+              onclick="agregarAlCarrito(${producto.id})"
+            >
+              Agregar al carrito
+            </button>
+          </div>
+        </article>
+      `).join("");
     }
 
+    function filtrarProductos() {
+      const texto = document
+        .getElementById("busqueda")
+        .value.toLowerCase()
+        .trim();
 
-    // ==============================
-    // FINALIZAR COMPRA
-    // ==============================
-
-    function finalizarCompra() {
-
-      if (carrito.length === 0) {
-
-        alert(
-          "El carrito está vacío. Agrega productos antes de finalizar la compra."
-        );
-
-        return;
-
-      }
-
-
-      alert(
-        "🎉 ¡Gracias por tu compra! En breve recibirás un correo de confirmación."
+      const resultados = productos.filter(producto =>
+        producto.nombre.toLowerCase().includes(texto) ||
+        producto.descripcion.toLowerCase().includes(texto)
       );
 
-
-      carrito.length = 0;
-
-      actualizarCarrito();
-
+      mostrarProductos(resultados);
     }
 
+    function agregarAlCarrito(id) {
+      const producto = productos.find(p => p.id === id);
+      if (!producto) return;
 
-    // ==============================
-    // INICIAR TIENDA
-    // ==============================
+      carrito.push(producto);
+      document.getElementById("cantidad").textContent =
+        carrito.length;
+
+      document.getElementById("estado-carrito").textContent =
+        `${producto.nombre} agregado al carrito.`;
+    }
+
+    function verCarrito() {
+      if (carrito.length === 0) {
+        alert("Tu carrito está vacío.");
+        return;
+      }
+
+      const resumen = carrito.map((producto, indice) =>
+        `${indice + 1}. ${producto.nombre} — ${formatoCOP(producto.precio)}`
+      ).join("\n");
+
+      const total = carrito.reduce(
+        (suma, producto) => suma + producto.precio, 0
+      );
+
+      alert(
+        "PRODUCTOS EN TU CARRITO\n\n" +
+        resumen +
+        "\n\nTotal estimado: " + formatoCOP(total) +
+        "\n\nEsta demostración no procesa pagos."
+      );
+    }
+
+    document.getElementById("anio").textContent =
+      new Date().getFullYear();
 
     mostrarProductos();
-
   </script>
 
+</body>
+</html>
 </body>
 </html>
